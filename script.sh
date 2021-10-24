@@ -1,2 +1,2 @@
 #!/bib/bash
-echo "Good morning"
+echo "Good morning ad"
