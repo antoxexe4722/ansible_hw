@@ -1,0 +1,12 @@
+--- # Connection
+-  name: Install packages
+ hosts: localhost
+ become: true
+ become_method: sudo
+ user: ec2-user
+ tasks:
+ - name: Add users
+    ansible.builtin.user:
+     name: johnd
+     comment: John Doe
+     state: present
