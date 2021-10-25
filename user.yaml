@@ -1,14 +1,37 @@
 --- # Connection
--  name: Install packages
- hosts: localhost
- become: true
- become_method: sudo
- user: ec2-user
- tasks:
- - name: Add users
+- name: Install packages
+  hosts: all
+  become: true
+  become_method: sudo 
+  user: ec2-user
+  
+  vars:
+    users:
+      - Bob
+      - Ben
+      - Lisa
+      - Katty
+  
+  tasks: 
+  
+  - name: Add users
+    when: ansible_facts['distribution'] == "Amazon"
     ansible.builtin.user:
-     name: 
-      - user1
-      - user2
-      - user3
-     state: present
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ users }}"
+     
+  - name: Create a 2048-bit SSH key for user jsmith in ~jsmith/.ssh/id_rsa
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: present
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+    with_items: "{{ users }}"
+     
+  - name: Get csv file
+    get_url:
+      url: https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv
+      dest: /home/{{ item }}/
+    with_items: "{{ users }}"
