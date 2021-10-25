@@ -35,3 +35,30 @@
       url: https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv
       dest: /home/{{ item }}/
     with_items: "{{ users }}"
+
+  - name: install httpd
+   when: ansible_facts['distribution'] == "CentOS"  
+   package: 
+     name: {{' item '}}
+     state: present
+    with_items:
+    - httpd
+    - php
+
+  - name: install MariaDB
+    when: ansible_facts['distribution'] == "CentOS"  
+    package: 
+     name: {{' item '}}
+     state: present
+    with_itema:
+    - mariadb
+    notify:
+    - Srart DB server
+
+  handlers:
+  - name: Start web server
+    when: ansible_facts['distribution'] == "CentOS"  
+    systemd:
+      name: mariadb
+      state: restarted
+      enabled: true
