@@ -50,7 +50,7 @@
     package: 
      name: {{' item '}}
      state: present
-    with_itema:
+    with_items:
     - mariadb
     notify:
     - Srart DB server
