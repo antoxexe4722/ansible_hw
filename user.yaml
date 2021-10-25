@@ -39,7 +39,7 @@
   - name: install httpd
     when: ansible_facts['distribution'] == "CentOS"  
     package: 
-     name: {{' item '}}
+     name: "{{ item }}"
      state: present
     with_items:
     - httpd
@@ -48,7 +48,7 @@
   - name: install MariaDB
     when: ansible_facts['distribution'] == "CentOS"  
     package: 
-     name: {{' item '}}
+     name: "{{ item }}"
      state: present
     with_items:
     - mariadb
