@@ -36,15 +36,6 @@
       dest: /home/{{ item }}/
     with_items: "{{ users }}"
 
-  - name: install httpd
-    when: ansible_facts['distribution'] == "CentOS"  
-    package: 
-     name: "{{ item }}"
-     state: present
-    with_items:
-    - httpd
-    - php
-
   - name: install MariaDB
     when: ansible_facts['distribution'] == "CentOS"  
     package: 
