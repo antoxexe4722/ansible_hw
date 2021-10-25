@@ -1,6 +1,6 @@
 --- # Connection
- - name: Install packages
- hosts: localhost
+- name: Install packages
+ hosts: localhostlocalhost
  become: true
  become_method: sudo
  user: ec2-user
@@ -8,4 +8,5 @@
  - name: Install telnet
    ansible.builtin.package:
      name: telnet
-     state: present  #present    #latest
+     state: present 
+
