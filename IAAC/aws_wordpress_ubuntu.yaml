@@ -1,0 +1,6 @@
+# ansible-playbook IAAC/aws_wordpress_ubuntu.yaml
+---
+- name: Install wordpress on Ubuntu
+  hosts: localhost
+  tasks:
+  - 

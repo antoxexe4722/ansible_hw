@@ -1,4 +1,4 @@
-# ansible-playbook aws_iam.yaml
+# ansible-playbook 
 ---
 - name: Add IAM users
   hosts: localhost
@@ -8,9 +8,17 @@
      iam_type: user
      name: "{{ item }}"
      state: present
-     password: "pass12345!"
+     password: "pass12345dfhahjkadDFASDFASFASDFASDF342432@!!#!@#!@#!!"
      access_key_state: create
     loop:
      - user1
      - user2
-    
+  - name: Create new group DevOps
+    community.aws.iam:
+     iam_type: group
+     name: "{{ item }}"
+     state: present
+    loop:
+     - DevOps
+    register: new_groups  
+  

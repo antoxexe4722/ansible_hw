@@ -1,0 +1,13 @@
+# ansible-playbook IAAC/aws_ec2.yaml
+---
+- name: Create 5 ec2
+  hosts: localhost
+  tasks:
+  - amazon.aws.ec2:
+     key_name: laptop
+     instance_type: t2.micro
+     image: ami-074cce78125f09d61
+     wait: yes
+     count: 5
+     region: us-east-2
+  

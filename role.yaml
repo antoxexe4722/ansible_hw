@@ -1,0 +1,8 @@
+--- 
+- name: Execute role
+  hosts: localhost
+  become: yes
+  become_method: sudo
+  roles: 
+  - role: IAAC/aws_iam.yaml
+  - role: IAAC/aws_ec2.yaml
